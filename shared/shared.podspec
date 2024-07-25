@@ -2,13 +2,14 @@ Pod::Spec.new do |spec|
     spec.name                     = 'shared'
     spec.version                  = '1.0.1'
     spec.homepage                 = 'https://github.com/misaelemunoz/dynamic-list-proxy'
-    spec.source                   = { :http=> ''}
     spec.authors                  = ''
-    spec.license                  = ''
+    spec.license                  =  { :type => 'MIT', :file => 'LICENSE' }
+    spec.source                   =  { :git => 'https://github.com/misaelemunoz/dynamic-list-proxy.git', :tag => "v1.0.0" }
     spec.summary                  = 'iOS library for mapping dynamic list responses'
-    spec.vendored_frameworks      = 'build/cocoapods/framework/DynamicListProxy.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target    = '13.0'
+    spec.pod_target_xcconfig   = { 'KOTLIN_TARGET' => 'ios' }
+    spec.user_target_xcconfig  = { 'KOTLIN_TARGET' => 'ios' }
                 
                 
     if !Dir.exist?('build/cocoapods/framework/DynamicListProxy.framework') || Dir.empty?('build/cocoapods/framework/DynamicListProxy.framework')
