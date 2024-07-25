@@ -102,7 +102,6 @@ kotlin {
             baseName = "DynamicListProxy"
             isStatic = true
         }
-        noPodspec()
     }
 }
 
