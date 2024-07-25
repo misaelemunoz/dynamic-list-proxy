@@ -9,7 +9,7 @@ Pod::Spec.new do |spec|
     spec.vendored_frameworks      = 'build/cocoapods/framework/DynamicListProxy.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target    = '13.0'
-    spec.dependency 'DynamicListProxy'
+                
                 
     if !Dir.exist?('build/cocoapods/framework/DynamicListProxy.framework') || Dir.empty?('build/cocoapods/framework/DynamicListProxy.framework')
         raise "

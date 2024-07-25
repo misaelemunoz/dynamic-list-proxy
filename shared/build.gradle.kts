@@ -100,12 +100,6 @@ kotlin {
         framework {
             baseName = "DynamicListProxy"
         }
-
-        pod("DynamicListProxy") {
-            source = git("https://github.com/misaelemunoz/dynamic-list-proxy.git") {
-                tag = "1.0.1"
-            }
-        }
     }
 }
 
