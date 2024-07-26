@@ -2,28 +2,14 @@ Pod::Spec.new do |spec|
     spec.name                     = 'shared'
     spec.version                  = '1.0.1'
     spec.homepage                 = 'https://github.com/misaelemunoz/dynamic-list-proxy'
-    spec.license                  =  { :type => "MIT" }
-    spec.source                   =  { :git => 'https://github.com/misaelemunoz/dynamic-list-proxy.git', :tag => "1.0.1" }
-    spec.authors                  = ''
+    spec.source                   = { :http=> ''}
+    spec.authors                  = 'Misael Munoz'
+    spec.license                  = { :type => 'MIT', :text => 'License text'}
     spec.summary                  = 'iOS library for mapping dynamic list responses'
     spec.vendored_frameworks      = 'DynamicListProxy.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target    = '13.0'
-    spec.static_framework = true
-    spec.requires_arc = true
-                
-                
-    if !Dir.exist?('build/cocoapods/framework/DynamicListProxy.framework') || Dir.empty?('build/cocoapods/framework/DynamicListProxy.framework')
-        raise "
-
-        Kotlin framework 'DynamicListProxy' doesn't exist yet, so a proper Xcode project can't be generated.
-        'pod install' should be executed after running ':generateDummyFramework' Gradle task:
-
-            ./gradlew :shared:generateDummyFramework
-
-        Alternatively, proper pod installation is performed during Gradle sync in the IDE (if Podfile location is set)"
-    end
-                
+    spec.static_framework         = true
     spec.xcconfig = {
         'ENABLE_USER_SCRIPT_SANDBOXING' => 'NO',
     }
@@ -52,5 +38,5 @@ Pod::Spec.new do |spec|
             SCRIPT
         }
     ]
-                
+    spec.source = { :git => 'https://github.com/misaelemunoz/dynamic-list-proxy.git', :tag => '1.0.1' }
 end

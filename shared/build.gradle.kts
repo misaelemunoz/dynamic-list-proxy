@@ -1,6 +1,7 @@
 import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.nio.file.Files
 
 plugins {
     alias(libs.plugins.ksp)
@@ -97,12 +98,20 @@ kotlin {
         summary = "iOS library for mapping dynamic list responses"
         homepage = "https://github.com/misaelemunoz/dynamic-list-proxy"
         ios.deploymentTarget = "13.0"
-        source = "https://github.com/misaelemunoz/dynamic-list-proxy.git"
+        extraSpecAttributes["source"] = "{ :git => 'https://github.com/misaelemunoz/dynamic-list-proxy.git', :tag => '$version' }"
+        license = "{ :type => 'MIT', :text => 'License text'}"
+        authors = "Misael Munoz"
+
+        specRepos {
+            url("https://github.com/misaelemunoz/dynamic-list-proxy.git")
+        }
+
         framework {
             baseName = "DynamicListProxy"
             isStatic = true
         }
     }
+
 }
 
 android {
