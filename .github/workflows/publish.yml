@@ -17,7 +17,10 @@ jobs:
           java-version: '17'
 
       - name: Install GPG
-        run: brew install gpg
+        run: |
+          brew install gpg
+          mkdir -p ~/.gnupg
+          chmod 700 ~/.gnupg
 
       - name: Create and Check GPG File
         env:
