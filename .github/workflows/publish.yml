@@ -21,21 +21,19 @@ jobs:
           brew install gpg
           mkdir -p ~/.gnupg
           chmod 700 ~/.gnupg
+          gpg --version
+          echo "GPG installation and setup completed."
 
-      - name: Create and Check GPG File
+      - name: Verify GPG Access
+        run: |
+          gpg --list-keys || echo "GPG key listing failed. No keys are available or GPG is not accessible."
+
+      - name: Import GPG Key
         env:
           SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
         run: |
-          echo "$SIGNING_KEY" > /tmp/signing_key.asc
-          echo "Content of SIGNING_KEY (parcial):"
-          echo "${SIGNING_KEY:0:30}..."
-          echo "Content of /tmp/signing_key.asc:"
-          cat /tmp/signing_key.asc
-          gpg --import /tmp/signing_key.asc
-
-      - name: List GPG Keys
-        run: |
-          gpg --list-secret-keys --keyid-format LONG
+          echo "$SIGNING_KEY" | gpg --batch --import || echo "GPG import failed."
+          gpg --list-secret-keys --keyid-format LONG || echo "Failed to list GPG secret keys."
           
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
