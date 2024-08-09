@@ -17,19 +17,22 @@ jobs:
           java-version: '17'
 
       - name: Install GPG
+        run: brew install gpg
+
+      - name: Create and Check GPG File
         env:
           SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
         run: |
-          brew install gpg
-          echo "$SIGNING_KEY" | gpg --import
-          
+          echo "$SIGNING_KEY" > /tmp/signing_key.asc
+          echo "Content of SIGNING_KEY (parcial):"
+          echo "${SIGNING_KEY:0:30}..."
+          echo "Content of /tmp/signing_key.asc:"
+          cat /tmp/signing_key.asc
+          gpg --import /tmp/signing_key.asc
+
       - name: List GPG Keys
         run: |
           gpg --list-secret-keys --keyid-format LONG
-
-      - name: Check SIGNING_KEY
-        run: |
-          echo "${SIGNING_KEY:0:30}..."
           
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
